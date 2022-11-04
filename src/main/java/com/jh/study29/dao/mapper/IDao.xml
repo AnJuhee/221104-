@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.jh.study29.dao.IDao">
+	<delete id="deleteDao">
+		DELETE FROM board WHERE mid=#{param1}
+	</delete>
+
+	<insert id="writeDao">
+		insert into board(mid,mwriter, mcontent) values (board_seq.nextval,#{param1}, #{param2})
+	</insert>
+	
+	<select id="listDao" resultType="com.jh.study29.dto.ContentDto">
+		select * from board order by mid desc
+	</select>
+	
+	<select id="mviewDao" resultType="com.jh.study29.dto.ContentDto">
+		select * from board where mid=#{param1}
+	</select>
+	
+	<update id="modifyDao">
+		update board set mwriter=#{param2}, mcontent=#{param3} where mid=#{param1}
+	</update>
+</mapper>
